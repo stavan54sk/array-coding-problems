@@ -60,7 +60,7 @@ public class App
 	}
 
 	void arrayRemoveDuplicates(int[] a) {
-		int i = 0,j=0;
+		int i = 0, j = 0;
 		while (i < a.length && j < a.length) {
 			if (a[i] == a[j])
 				j++;
@@ -69,15 +69,44 @@ public class App
 				a[i] = a[j];
 			}
 		}
-		
-		for (int i1 = 0; i1 <= i ; i1++) {
+
+		for (int i1 = 0; i1 <= i; i1++) {
 			System.out.println(a[i1]);
 		}
 
 	}
 
+	void arrayRotate(int[] a, int mk) {
+		int k= mk%a.length;
+		arrayReverse(a,0,a.length-k-1);
+		arrayReverse(a,a.length-k,a.length-1);
+		arrayReverse(a,0,a.length-1);
+		
+		for (int sts = 0; sts < a.length; sts++) {
+			System.out.print(a[sts]);
+		}
+		
+
+	}
+
+	void arrayReverse(int a[],int s,int e){
+		int i=s;
+		int j=e;
+		
+	while(i<j) {
+		
+		int temp=a[i];
+		a[i]=a[j];
+		a[j]=temp;
+		
+		i++;
+		j--;
+	}
+		
+	}
+
 	public static void main(String[] args) {
-		new App().arrayRemoveDuplicates(new int[] {1,1,2 });
+		new App().arrayRotate(new int[] {-1},2);
 		;
 //        System.out.println( "Hello World!" );
 	}
