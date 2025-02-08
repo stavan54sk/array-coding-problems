@@ -107,9 +107,48 @@ public class App
 	}
 		
 	}
+	
+//	void arrayZeroToEnd(int a[]){
+//		int cz=0;
+//		for (int i = 0; i < a.length-cz; ) {
+//			if(a[i]== 0) {
+//				cz+=1;
+//				for (int j = i; j < a.length-1; j++) {
+//					a[j]=a[j+1];
+//				}
+//				a[a.length-1]=0;
+//			}
+//			else
+//				i++;	
+//		}
+//		
+//		for (int i = 0; i < a.length; i++) {
+//			System.out.print(a[i]);
+//		}
+//	}
+	
+	void arrayZeroToEnd(int a[]){
+		int i=0,j=0;int zc=0;
+		while(i<a.length-zc && j <a.length) {
+			if(a[j]!=0) {
+				a[i]=a[j];
+				i++;
+			}
+			else
+				zc=zc+1;
+			j++;		
+		}
+		for(int i1=a.length-zc;i1<a.length;i1++) {
+			a[i1]=0;
+		}
+		
+		for (int i1 = 0; i1 < a.length; i1++) {
+			System.out.print(a[i1]+" ");
+		}
+	}
 
 	public static void main(String[] args) {
-		new App().arrayRotate(new int[] {-1},2);
+		new App().arrayZeroToEnd(new int[] {0,1,0,3,12,0,4,5});
 		;
 //        System.out.println( "Hello World!" );
 	}
