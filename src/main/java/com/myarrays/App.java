@@ -73,6 +73,8 @@ public class App
 		for (int i1 = 0; i1 <= i; i1++) {
 			System.out.println(a[i1]);
 		}
+//		TC => N
+//		SC => 1
 
 	}
 
@@ -86,7 +88,8 @@ public class App
 			System.out.print(a[sts]);
 		}
 		
-
+//		TC => N
+//		SC => 1
 	}
 
 	void arrayReverse(int a[],int s,int e){
