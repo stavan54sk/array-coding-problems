@@ -128,24 +128,18 @@ public class App
 //	}
 	
 	void arrayZeroToEnd(int a[]){
-		int i=0,j=0;int zc=0;
-		while(i<a.length-zc && j <a.length) {
-			if(a[j]!=0) {
-				a[i]=a[j];
-				i++;
-			}
-			else
-				zc=zc+1;
-			j++;		
-		}
-		for(int i1=a.length-zc;i1<a.length;i1++) {
-			a[i1]=0;
-		}
-		
-		for (int i1 = 0; i1 < a.length; i1++) {
-			System.out.print(a[i1]+" ");
-		}
+	  	 int i = 0; 
+	     for (int j = 0; j < a.length; j++) {
+	         if (a[j] != 0) {
+	             a[i++] = a[j];
+	         }
+	     }
+	     while (i < a.length) {
+	         a[i++] = 0;
+	     }
 	}
+	
+	
 
 	public static void main(String[] args) {
 		new App().arrayZeroToEnd(new int[] {0,1,0,3,12,0,4,5});
