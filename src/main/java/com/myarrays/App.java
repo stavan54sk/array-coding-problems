@@ -137,6 +137,8 @@ public class App
 	     while (i < a.length) {
 	         a[i++] = 0;
 	     }
+//			TC => N
+//			SC => 1
 	}
 	
 	
