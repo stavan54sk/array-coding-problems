@@ -79,35 +79,35 @@ public class App
 	}
 
 	void arrayRotate(int[] a, int mk) {
-		int k= mk%a.length;
-		arrayReverse(a,0,a.length-k-1);
-		arrayReverse(a,a.length-k,a.length-1);
-		arrayReverse(a,0,a.length-1);
-		
+		int k = mk % a.length;
+		arrayReverse(a, 0, a.length - k - 1);
+		arrayReverse(a, a.length - k, a.length - 1);
+		arrayReverse(a, 0, a.length - 1);
+
 		for (int sts = 0; sts < a.length; sts++) {
 			System.out.print(a[sts]);
 		}
-		
+
 //		TC => N
 //		SC => 1
 	}
 
-	void arrayReverse(int a[],int s,int e){
-		int i=s;
-		int j=e;
-		
-	while(i<j) {
-		
-		int temp=a[i];
-		a[i]=a[j];
-		a[j]=temp;
-		
-		i++;
-		j--;
+	void arrayReverse(int a[], int s, int e) {
+		int i = s;
+		int j = e;
+
+		while (i < j) {
+
+			int temp = a[i];
+			a[i] = a[j];
+			a[j] = temp;
+
+			i++;
+			j--;
+		}
+
 	}
-		
-	}
-	
+
 //	void arrayZeroToEnd(int a[]){
 //		int cz=0;
 //		for (int i = 0; i < a.length-cz; ) {
@@ -126,25 +126,32 @@ public class App
 //			System.out.print(a[i]);
 //		}
 //	}
-	
-	void arrayZeroToEnd(int a[]){
-	  	 int i = 0; 
-	     for (int j = 0; j < a.length; j++) {
-	         if (a[j] != 0) {
-	             a[i++] = a[j];
-	         }
-	     }
-	     while (i < a.length) {
-	         a[i++] = 0;
-	     }
+
+	void arrayZeroToEnd(int a[]) {
+		int i = 0;
+		for (int j = 0; j < a.length; j++) {
+			if (a[j] != 0) {
+				a[i++] = a[j];
+			}
+		}
+		while (i < a.length) {
+			a[i++] = 0;
+		}
 //			TC => N
 //			SC => 1
 	}
-	
-	
+
+	boolean arrayLinearSearch(int[] a, int k) {
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] == k)
+				return true;
+		}
+		return false;
+
+	}
 
 	public static void main(String[] args) {
-		new App().arrayZeroToEnd(new int[] {0,1,0,3,12,0,4,5});
+		System.out.println(new App().arrayLinearSearch(new int[] { 0, 1, 0, 3, 12, 0, 4, 5 }, -1));
 		;
 //        System.out.println( "Hello World!" );
 	}
