@@ -147,7 +147,8 @@ public class App
 				return true;
 		}
 		return false;
-
+//		TC => N
+//		SC => 1
 	}
 
 	public static void main(String[] args) {
