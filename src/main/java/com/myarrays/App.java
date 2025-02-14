@@ -151,8 +151,34 @@ public class App
 //		SC => 1
 	}
 
+	void arrayMaxConsecutiveOnes(int[] nums) {
+		int max=0,count=0;
+	     for(int i=0;i<nums.length;i++){
+	        if(nums[i]==1){
+	            count++;
+	        }else{
+	             max = Math.max(max, count);
+	            count=0;
+	        }
+	        max = Math.max(max, count);
+	     }   
+		System.out.println(max);
+//		TC => N
+//		SC => 1
+		
+	}
+	
+	void arraymissingNumber(int[] nums) {
+		int sum =0;int max=nums.length;
+		for (int i = 0; i < nums.length; i++) {
+			sum=sum+nums[i];
+		}
+		
+		System.out.println((max*(max+1)/2-sum));
+	}
+
 	public static void main(String[] args) {
-		System.out.println(new App().arrayLinearSearch(new int[] { 0, 1, 0, 3, 12, 0, 4, 5 }, -1));
+		new App().arraymissingNumber(new int[] {  9,6,4,2,3,5,7,0,1 });
 		;
 //        System.out.println( "Hello World!" );
 	}
