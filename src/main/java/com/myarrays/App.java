@@ -1,6 +1,8 @@
 package com.myarrays;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Hello world!
@@ -152,33 +154,159 @@ public class App
 	}
 
 	void arrayMaxConsecutiveOnes(int[] nums) {
-		int max=0,count=0;
-	     for(int i=0;i<nums.length;i++){
-	        if(nums[i]==1){
-	            count++;
-	        }else{
-	             max = Math.max(max, count);
-	            count=0;
-	        }
-	        max = Math.max(max, count);
-	     }   
+		int max = 0, count = 0;
+		for (int i = 0; i < nums.length; i++) {
+			if (nums[i] == 1) {
+				count++;
+			} else {
+				max = Math.max(max, count);
+				count = 0;
+			}
+			max = Math.max(max, count);
+		}
 		System.out.println(max);
 //		TC => N
 //		SC => 1
-		
-	}
-	
-	void arraymissingNumber(int[] nums) {
-		int sum =0;int max=nums.length;
-		for (int i = 0; i < nums.length; i++) {
-			sum=sum+nums[i];
-		}
-		
-		System.out.println((max*(max+1)/2-sum));
+
 	}
 
+	void arraymissingNumber(int[] nums) {
+		int sum = 0;
+		int max = nums.length;
+		for (int i = 0; i < nums.length; i++) {
+			sum = sum + nums[i];
+		}
+
+		System.out.println((max * (max + 1) / 2 - sum));
+	}
+
+	void arraysingleNumber(int[] nums) {
+		int zero = 0;
+		for (int i = 0; i < nums.length; i++) {
+			zero = zero ^ nums[i];
+		}
+
+//		TC => N
+//		SC => 1
+		System.out.println(zero);
+	}
+
+//	void arrayUnionOf2Sorted(int[] num1, int[] num2) {
+//		ArrayList<Integer> ra=new ArrayList<Integer>();
+//		int[] num = new int[num1.length + num2.length+1];
+//		int idx = -1;
+//		int i = 0, j = 0;
+//		for (; i < num1.length && j < num2.length;) {
+//			idx = idx < 0 ? 0 : idx;
+//			if (num1[i] < num2[j]) {
+//				if (num1[i] == num[idx]) {
+//					i++;
+//				} else {
+//					idx++;
+//					num[idx] = num1[i];
+//					i++;
+//				}
+//			} else if (num2[j] < num1[i]) {
+//				if (num2[j] == num[idx]) {
+//					j++;
+//				} else {
+//					idx++;
+//					num[idx] = num2[j];
+//					j++;
+//				}
+//			} else {
+//				if (num2[j] == num[idx]) {
+//					j++;
+//					i++;
+//				} else {
+//					idx++;
+//					num[idx] = num2[j];
+//					j++;
+//					i++;
+//				}
+//
+//			}
+//		}
+//		for (; i < num1.length;) {
+//				if (num1[i] == num[idx]) {
+//					i++;
+//				} else {
+//					idx++;
+//					num[idx] = num1[i];
+//					i++;
+//				}
+//		}
+////
+//		for (; j < num2.length; ) {
+//			if (num2[j] == num[idx]) {
+//				j++;
+//			} else {
+//				idx++;
+//				num[idx] = num2[j];
+//				j++;
+//			}
+//		}
+//		for (int k = 1; k <= idx; k++) {
+//			ra.add(num[k]);
+//		}
+//
+////		System.out.println(zero);
+//	}
+	
+	void arrayUnionOf2Sorted(int[] num1, int[] num2) {
+        List<Integer> ra = new ArrayList<>();
+        int i = 0, j = 0;
+        Integer lastAdded = null; // Track the last added number to avoid duplicates
+
+        while (i < num1.length && j < num2.length) {
+            if (num1[i] < num2[j]) {
+                if (lastAdded == null || lastAdded != num1[i]) {
+                    ra.add(num1[i]);
+                    lastAdded = num1[i];
+                }
+                i++;
+            } else if (num2[j] < num1[i]) {
+                if (lastAdded == null || lastAdded != num2[j]) {
+                    ra.add(num2[j]);
+                    lastAdded = num2[j];
+                }
+                j++;
+            } else { // num1[i] == num2[j]
+                if (lastAdded == null || lastAdded != num1[i]) {
+                    ra.add(num1[i]);
+                    lastAdded = num1[i];
+                }
+                i++;
+                j++;
+            }
+        }
+
+        // Add remaining elements from num1
+        while (i < num1.length) {
+            if (lastAdded == null || lastAdded != num1[i]) {
+                ra.add(num1[i]);
+                lastAdded = num1[i];
+            }
+            i++;
+        }
+
+        // Add remaining elements from num2
+        while (j < num2.length) {
+            if (lastAdded == null || lastAdded != num2[j]) {
+                ra.add(num2[j]);
+                lastAdded = num2[j];
+            }
+            j++;
+        }
+//		TC => N ;where N=n1+n2
+//		SC => N
+
+        System.out.println(ra);
+    }
+
+
 	public static void main(String[] args) {
-		new App().arraymissingNumber(new int[] {  9,6,4,2,3,5,7,0,1 });
+		new App().arrayUnionOf2Sorted(new int[] { -4 }, new int[] { -9 ,2 ,5});
 		;
 //        System.out.println( "Hello World!" );
 	}
