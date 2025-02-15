@@ -303,10 +303,35 @@ public class App
 
         System.out.println(ra);
     }
+	
+
+	void arrayIntersectionOf2Sorted(int[] num1, int[] num2) {
+        List<Integer> ra = new ArrayList<>();
+        int i = 0, j = 0;
+        Integer lastAdded = null; // Track the last added number to avoid duplicates
+
+        while (i < num1.length && j < num2.length) {
+           if( num1[i] == num2[j]) {
+                if (lastAdded == null || lastAdded != num1[i]) {
+                    ra.add(num1[i]);
+                    lastAdded = num1[i];
+                }
+                i++;
+                j++;
+            }
+        }
+
+     
+//		TC => N ;where N=n1+n2
+//		SC => N
+
+        System.out.println(ra);
+    }
+	
 
 
 	public static void main(String[] args) {
-		new App().arrayUnionOf2Sorted(new int[] { -4 }, new int[] { -9 ,2 ,5});
+		new App().arrayIntersectionOf2Sorted(new int[] { -4 ,2}, new int[] { -4 ,2 ,5});
 		;
 //        System.out.println( "Hello World!" );
 	}
