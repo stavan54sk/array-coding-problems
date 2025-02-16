@@ -1,6 +1,7 @@
 package com.myarrays;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -328,10 +329,55 @@ public class App
         System.out.println(ra);
     }
 	
+//	void longestSumArraySumK(int[] num,int k){
+//		int maxLength=0;
+//		for (int i = 0; i < num.length; i++) {
+//			int sum=0;
+//			for (int j = i; j < num.length; j++) {
+//				sum=sum + num[j];
+//				if(sum == k) {
+//					int length=(j-i+1);
+//					maxLength= Math.max(maxLength, length);
+//				}
+//			}
+//			
+//		}
+//	TC => N^2 
+//	SC => 1
+//		System.out.println(maxLength);
+//		
+//	}
+	void longestSumArraySumK(int[] num,int k){
+		int prefixSum=0;
+		int length=0;
+		HashMap<Integer, Integer> lengthHashMap=new HashMap<Integer, Integer>();
+		for (int i = 0; i < num.length; i++) {
+			prefixSum=prefixSum+num[i];
+			
+			if(prefixSum==k) {
+				length=i+1;
+			}
+			
+			else if(lengthHashMap.containsKey(prefixSum-k)) {
+				length=Math.max(length, i-lengthHashMap.get(prefixSum-k));
+			}
+			
+			
+			if(!lengthHashMap.containsKey(prefixSum)) {
+				lengthHashMap.put(prefixSum, i);
+			}
+			
+		}
+		System.out.println(length);
+//		TC => N
+//		SC => N
+	}
+	
+	
 
 
 	public static void main(String[] args) {
-		new App().arrayIntersectionOf2Sorted(new int[] { -4 ,2}, new int[] { -4 ,2 ,5});
+		new App().longestSumArraySumK(new int[] {10, 5, 2, 7, 1, -10}, 15);
 		;
 //        System.out.println( "Hello World!" );
 	}
