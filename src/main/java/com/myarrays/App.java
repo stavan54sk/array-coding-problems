@@ -1,9 +1,13 @@
 package com.myarrays;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Hello world!
@@ -253,83 +257,81 @@ public class App
 //
 ////		System.out.println(zero);
 //	}
-	
+
 	void arrayUnionOf2Sorted(int[] num1, int[] num2) {
-        List<Integer> ra = new ArrayList<>();
-        int i = 0, j = 0;
-        Integer lastAdded = null; // Track the last added number to avoid duplicates
+		List<Integer> ra = new ArrayList<>();
+		int i = 0, j = 0;
+		Integer lastAdded = null; // Track the last added number to avoid duplicates
 
-        while (i < num1.length && j < num2.length) {
-            if (num1[i] < num2[j]) {
-                if (lastAdded == null || lastAdded != num1[i]) {
-                    ra.add(num1[i]);
-                    lastAdded = num1[i];
-                }
-                i++;
-            } else if (num2[j] < num1[i]) {
-                if (lastAdded == null || lastAdded != num2[j]) {
-                    ra.add(num2[j]);
-                    lastAdded = num2[j];
-                }
-                j++;
-            } else { // num1[i] == num2[j]
-                if (lastAdded == null || lastAdded != num1[i]) {
-                    ra.add(num1[i]);
-                    lastAdded = num1[i];
-                }
-                i++;
-                j++;
-            }
-        }
+		while (i < num1.length && j < num2.length) {
+			if (num1[i] < num2[j]) {
+				if (lastAdded == null || lastAdded != num1[i]) {
+					ra.add(num1[i]);
+					lastAdded = num1[i];
+				}
+				i++;
+			} else if (num2[j] < num1[i]) {
+				if (lastAdded == null || lastAdded != num2[j]) {
+					ra.add(num2[j]);
+					lastAdded = num2[j];
+				}
+				j++;
+			} else { // num1[i] == num2[j]
+				if (lastAdded == null || lastAdded != num1[i]) {
+					ra.add(num1[i]);
+					lastAdded = num1[i];
+				}
+				i++;
+				j++;
+			}
+		}
 
-        // Add remaining elements from num1
-        while (i < num1.length) {
-            if (lastAdded == null || lastAdded != num1[i]) {
-                ra.add(num1[i]);
-                lastAdded = num1[i];
-            }
-            i++;
-        }
+		// Add remaining elements from num1
+		while (i < num1.length) {
+			if (lastAdded == null || lastAdded != num1[i]) {
+				ra.add(num1[i]);
+				lastAdded = num1[i];
+			}
+			i++;
+		}
 
-        // Add remaining elements from num2
-        while (j < num2.length) {
-            if (lastAdded == null || lastAdded != num2[j]) {
-                ra.add(num2[j]);
-                lastAdded = num2[j];
-            }
-            j++;
-        }
+		// Add remaining elements from num2
+		while (j < num2.length) {
+			if (lastAdded == null || lastAdded != num2[j]) {
+				ra.add(num2[j]);
+				lastAdded = num2[j];
+			}
+			j++;
+		}
 //		TC => N ;where N=n1+n2
 //		SC => N
 
-        System.out.println(ra);
-    }
-	
+		System.out.println(ra);
+	}
 
 	void arrayIntersectionOf2Sorted(int[] num1, int[] num2) {
-        List<Integer> ra = new ArrayList<>();
-        int i = 0, j = 0;
-        Integer lastAdded = null; // Track the last added number to avoid duplicates
+		List<Integer> ra = new ArrayList<>();
+		int i = 0, j = 0;
+		Integer lastAdded = null; // Track the last added number to avoid duplicates
 
-        while (i < num1.length && j < num2.length) {
-           if( num1[i] == num2[j]) {
-                if (lastAdded == null || lastAdded != num1[i]) {
-                    ra.add(num1[i]);
-                    lastAdded = num1[i];
-                }
-                i++;
-                j++;
-            }
-        }
+		while (i < num1.length && j < num2.length) {
+			if (num1[i] == num2[j]) {
+				if (lastAdded == null || lastAdded != num1[i]) {
+					ra.add(num1[i]);
+					lastAdded = num1[i];
+				}
+				i++;
+				j++;
+			}
+		}
 
-     
 //		TC => N ;where N=n1+n2
 //		SC => N
 
-        System.out.println(ra);
-    }
-	
-//	void longestSumArraySumK(int[] num,int k){
+		System.out.println(ra);
+	}
+
+//	void arrayLongestSumArraySumK(int[] num,int k){
 //		int maxLength=0;
 //		for (int i = 0; i < num.length; i++) {
 //			int sum=0;
@@ -347,38 +349,84 @@ public class App
 //		System.out.println(maxLength);
 //		
 //	}
-	void longestSumArraySumK(int[] num,int k){
-		int prefixSum=0;
-		int length=0;
-		HashMap<Integer, Integer> lengthHashMap=new HashMap<Integer, Integer>();
+	void arrayLongestSumArraySumK(int[] num, int k) {
+		int prefixSum = 0;
+		int length = 0;
+		HashMap<Integer, Integer> lengthHashMap = new HashMap<Integer, Integer>();
 		for (int i = 0; i < num.length; i++) {
-			prefixSum=prefixSum+num[i];
-			
-			if(prefixSum==k) {
-				length=i+1;
+			prefixSum = prefixSum + num[i];
+
+			if (prefixSum == k) {
+				length = i + 1;
 			}
-			
-			else if(lengthHashMap.containsKey(prefixSum-k)) {
-				length=Math.max(length, i-lengthHashMap.get(prefixSum-k));
+
+			else if (lengthHashMap.containsKey(prefixSum - k)) {
+				length = Math.max(length, i - lengthHashMap.get(prefixSum - k));
 			}
-			
-			
-			if(!lengthHashMap.containsKey(prefixSum)) {
+
+			if (!lengthHashMap.containsKey(prefixSum)) {
 				lengthHashMap.put(prefixSum, i);
 			}
-			
+
 		}
 		System.out.println(length);
 //		TC => N
 //		SC => N
 	}
-	
-	
 
+	private void mergeSort(int[] a, int s, int e) {
+		if (s >= e)
+			return; // Base case improvement
+
+		int mid = s + (e - s) / 2; // Avoid overflow
+		mergeSort(a, s, mid);
+		mergeSort(a, mid + 1, e);
+		merge(a, s, mid, e);
+	}
+
+	private void merge(int[] a, int s, int m, int e) {
+		int[] temp = new int[e - s + 1];
+		int k = 0, i = s, j = m + 1;
+
+		while (i <= m && j <= e) {
+			temp[k++] = (a[i] <= a[j]) ? a[i++] : a[j++];
+		}
+
+		while (i <= m)
+			temp[k++] = a[i++];
+		while (j <= e)
+			temp[k++] = a[j++];
+
+		for (int l = 0; l < temp.length; l++) {
+			a[s + l] = temp[l];
+		}
+
+	}
+
+	int[] array2Sum(int[] num, int k) {
+		int[] r = new int[] { -1, -1 };
+		HashMap<Integer, Integer> hm = new HashMap<Integer, Integer>();
+		for (int i = 0; i < num.length; i++) {
+			if (hm.containsKey(k - num[i])) {
+				r[0] = i;
+				r[1] = hm.get(k - num[i]);
+				return r;
+			} else {
+				hm.put(num[i], i);
+			}
+		}
+		return r;
+
+	}
 
 	public static void main(String[] args) {
-		new App().longestSumArraySumK(new int[] {10, 5, 2, 7, 1, -10}, 15);
-		;
+		int a[] = new App().array2Sum(new int[] { 3, 3}, 6);
+
+		for (int i = 0; i < a.length; i++) {
+			System.out.println(a[i]);
+		}
+
+//		;
 //        System.out.println( "Hello World!" );
 	}
 }
