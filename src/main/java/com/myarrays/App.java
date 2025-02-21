@@ -418,35 +418,74 @@ public class App
 		return r;
 
 	}
-	
-	void array012Sort(int[] num){
-		int l=0,m=0,h=num.length-1;
-		while(m<=h) {
-			if(num[m]==0) {
+
+	void array012Sort(int[] num) {
+		int l = 0, m = 0, h = num.length - 1;
+		while (m <= h) {
+			if (num[m] == 0) {
 				int temp = num[l];
 				num[l] = num[m];
-				num[m]=temp;
+				num[m] = temp;
 				l++;
-				m++;	
-			}
-			else if(num[m]==1) {
-				m++;	
-			}
-			else {
+				m++;
+			} else if (num[m] == 1) {
+				m++;
+			} else {
 				int temp = num[m];
 				num[m] = num[h];
-				num[h]=temp;
+				num[h] = temp;
 				h--;
 			}
 		}
-		
+
 		for (int i = 0; i < num.length; i++) {
 			System.out.print(num[i]);
 		}
 	}
 
+//	int arrayElementGraterThanNby2(int[] num) {
+//		int val=0;
+//		for (int i = 0; i < num.length; i++) {
+//			int f = 0;val=num[i];
+//			for (int j = i + 1; j < num.length; j++) {
+//				if (val == num[j])
+//					f++;
+//			}
+//			if(f>=num.length/2)
+//				return num[i];
+//		}
+//
+//		return val;
+//	}
+
+	void arrayElementGraterThanNby2(int[] num) {
+		int f = 0, r = 0;
+
+		for (int i = 0; i < num.length; i++) {
+			if (f == 0)
+				r = num[i];
+			if (num[i] == r)
+				f++;
+			else
+				f--;
+		}
+		System.out.println("Majority Element (Candidate): " + r);
+	}
+	
+	int arrayMaxSubArraySum(int[] num){
+		int cs=0;int ms=Integer.MIN_VALUE;
+		for (int i = 0; i < num.length; i++) {
+				cs=cs+num[i];
+				ms=Math.max(ms, cs);
+				if(cs<0)
+					cs=0;
+			}
+		
+		return ms;
+	}
+
 	public static void main(String[] args) {
-		 new App().array012Sort(new int[] { 0,2,0,1,2,1,0,0,});
+		System.out.println(new App().arrayMaxSubArraySum(new int[] {-2,1,-3,4,-1,2,1,-5,4 }));
 //		;
 //        System.out.println( "Hello World!" );
 	}
