@@ -3,6 +3,7 @@ package com.myarrays;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Hashtable;
@@ -519,30 +520,45 @@ public class App
 
 	}
 
-	Object[] arrayLeaders(int[] num) {
-		List<Integer> hm=new ArrayList<Integer>();
-		for (int i = 0; i < num.length; i++) {
-			boolean il = true;
-			for (int j = i + 1; j < num.length; j++) {
-				if (num[j] > num[i]) {
-					il=false;
-					break;
-				}
-			}
-			if(il)
-				hm.add(num[i]);
-		}
-		
-			
-			return hm.toArray();
+//	ArrayList<Integer> arrayLeaders(int[] num) {
+//		ArrayList<Integer> hm=new ArrayList<Integer>();
+//		for (int i = 0; i < num.length; i++) {
+//			boolean il = true;
+//			for (int j = i + 1; j < num.length; j++) {
+//				if (num[j] > num[i]) {
+//					il=false;
+//					break;
+//				}
+//			}
+//			if(il)
+//				hm.add(num[i]);
+//		}
+//		
+//			
+//			return hm;
+//
+//	}
 
+	ArrayList<Integer> arrayLeaders(int[] num) {
+		int l=num[num.length-1];
+		ArrayList<Integer> lds=new ArrayList<Integer>();
+		
+		for (int i = num.length-1; i >= 0; i--) {
+			if(num[i] >= l) {
+				lds.add(num[i]);
+				l=num[i];
+			}
+		 
+	 }
+		Collections.reverse(lds);
+		return lds;
 	}
 
 	public static void main(String[] args) {
-	Object[] n= new App().arrayLeaders(new int[] { 3, 1, -2, -5, 2, -4 });
-	for (int i = 0; i < n.length; i++) {
-		System.out.println(n[i]);
-	}
+	 new App().arrayLeaders(new int[] { 3, 1, -2, -5, 2, -4 });
+//	for (int i = 0; i < n.length; i++) {
+//		System.out.println(n[i]);
+//	}
 
 	}
 }
