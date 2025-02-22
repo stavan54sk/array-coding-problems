@@ -1,8 +1,10 @@
 package com.myarrays;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
@@ -517,11 +519,30 @@ public class App
 
 	}
 
-	public static void main(String[] args) {
-		int[] ar = new App().arrayPNAlternate(new int[] { 3, 1, -2, -5, 2, -4 });
-
-		for (int i = 0; i < ar.length; i++) {
-			System.out.println(ar[i]);
+	Object[] arrayLeaders(int[] num) {
+		List<Integer> hm=new ArrayList<Integer>();
+		for (int i = 0; i < num.length; i++) {
+			boolean il = true;
+			for (int j = i + 1; j < num.length; j++) {
+				if (num[j] > num[i]) {
+					il=false;
+					break;
+				}
+			}
+			if(il)
+				hm.add(num[i]);
 		}
+		
+			
+			return hm.toArray();
+
+	}
+
+	public static void main(String[] args) {
+	Object[] n= new App().arrayLeaders(new int[] { 3, 1, -2, -5, 2, -4 });
+	for (int i = 0; i < n.length; i++) {
+		System.out.println(n[i]);
+	}
+
 	}
 }
