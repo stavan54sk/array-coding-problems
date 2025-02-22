@@ -471,22 +471,57 @@ public class App
 		}
 		System.out.println("Majority Element (Candidate): " + r);
 	}
-	
-	int arrayMaxSubArraySum(int[] num){
-		int cs=0;int ms=Integer.MIN_VALUE;
+
+	int arrayMaxSubArraySum(int[] num) {
+		int cs = 0;
+		int ms = Integer.MIN_VALUE;
 		for (int i = 0; i < num.length; i++) {
-				cs=cs+num[i];
-				ms=Math.max(ms, cs);
-				if(cs<0)
-					cs=0;
-			}
-		
+			cs = cs + num[i];
+			ms = Math.max(ms, cs);
+			if (cs < 0)
+				cs = 0;
+		}
+
 		return ms;
 	}
 
+	int arraySellBuy(int[] num) {
+		int cd;
+		int md = 0;
+		for (int i = 0; i < num.length; i++) {
+			cd = 0;
+			for (int j = i + 1; j < num.length; j++) {
+				md = Math.max(md, num[j] - num[i]);
+			}
+		}
+
+		return md;
+	}
+
+	int[] arrayPNAlternate(int[] num) {
+
+		int[] r = new int[num.length];
+		int pp = 0; // Position for positives (even indices)
+		int np = 1; // Position for negatives (odd indices)
+
+		for (int i = 0; i < num.length; i++) {
+			if (num[i] >= 0) {
+				r[pp] = num[i];
+				pp += 2; // Move to next even index
+			} else {
+				r[np] = num[i];
+				np += 2; // Move to next odd index
+			}
+		}
+		return r;
+
+	}
+
 	public static void main(String[] args) {
-		System.out.println(new App().arrayMaxSubArraySum(new int[] {-2,1,-3,4,-1,2,1,-5,4 }));
-//		;
-//        System.out.println( "Hello World!" );
+		int[] ar = new App().arrayPNAlternate(new int[] { 3, 1, -2, -5, 2, -4 });
+
+		for (int i = 0; i < ar.length; i++) {
+			System.out.println(ar[i]);
+		}
 	}
 }
