@@ -540,25 +540,100 @@ public class App
 //	}
 
 	ArrayList<Integer> arrayLeaders(int[] num) {
-		int l=num[num.length-1];
-		ArrayList<Integer> lds=new ArrayList<Integer>();
-		
-		for (int i = num.length-1; i >= 0; i--) {
-			if(num[i] >= l) {
+		int l = num[num.length - 1];
+		ArrayList<Integer> lds = new ArrayList<Integer>();
+
+		for (int i = num.length - 1; i >= 0; i--) {
+			if (num[i] >= l) {
 				lds.add(num[i]);
-				l=num[i];
+				l = num[i];
 			}
-		 
-	 }
+
+		}
 		Collections.reverse(lds);
 		return lds;
 	}
 
+	 private static void  quickSort(int[] num, int s, int e) {
+		if (s <= e) {
+			int pi = partition(num, s, e);
+			quickSort(num, s, pi - 1);
+			quickSort(num, pi + 1, e);
+		}
+		return;
+	}
+
+	 private static int partition(int[] num, int s, int e) {
+		// TODO Auto-generated method stub
+		int idx = s - 1;
+		int p = num[e];
+		for (int i = s; i < e; i++) {
+			if (num[i] <= p) {
+				idx++;
+				int temp = num[idx];
+				num[idx] = num[i];
+				num[i] = temp;
+			}
+		}
+
+		idx++;
+		int temp = num[idx];
+		num[idx] = num[e];
+		num[e] = temp;
+
+		return idx;
+	}
+
+	void arrayNextPermutation(int[] num) {
+		 int n = num.length;
+	        int pi = -1;
+
+	        // Step 1: Find the first decreasing element from the right
+	        for (int i = n - 2; i >= 0; i--) {
+	            if (num[i] < num[i + 1]) {
+	                pi = i;
+	                break;
+	            }
+	        }
+
+	        // Step 2: If no such element found, reverse the array (last permutation case)
+	        if (pi == -1) {
+	            quickSort(num, 0, n-1);
+	            return;
+	        }
+
+	        // Step 3: Find the smallest number greater than num[pi] from the right
+	        int mi = pi + 1;
+	        for (int j = n-1; j >=pi+1 ; j--) {
+	            if (num[j] > num[pi]) {
+	                mi = j;
+	                break;
+	            }
+	        }
+
+	        // Step 4: Swap num[pi] and num[mi]
+	        swap(num, pi, mi);
+
+	        // Step 5: Reverse the right part (after pi)
+	        reverse(num, pi + 1, n - 1);
+	}
+	
+	 private static void swap(int[] arr, int i, int j) {
+	        int temp = arr[i];
+	        arr[i] = arr[j];
+	        arr[j] = temp;
+	    }
+
+	  private static void reverse(int[] arr, int start, int end) {
+	        while (start < end) {
+	            swap(arr, start, end);
+	            start++;
+	            end--;
+	        }
+	    }
+
 	public static void main(String[] args) {
-	 new App().arrayLeaders(new int[] { 3, 1, -2, -5, 2, -4 });
-//	for (int i = 0; i < n.length; i++) {
-//		System.out.println(n[i]);
-//	}
+		new App().arrayNextPermutation(new int[] { 2,1,3 });
 
 	}
 }
