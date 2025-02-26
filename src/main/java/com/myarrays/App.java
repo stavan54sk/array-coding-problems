@@ -419,6 +419,8 @@ public class App
 			}
 		}
 		return r;
+//		TC => N
+//		SC => N
 
 	}
 
@@ -444,6 +446,8 @@ public class App
 		for (int i = 0; i < num.length; i++) {
 			System.out.print(num[i]);
 		}
+//		TC => N
+//		SC => 1
 	}
 
 //	int arrayElementGraterThanNby2(int[] num) {
@@ -461,7 +465,7 @@ public class App
 //		return val;
 //	}
 
-	void arrayElementGraterThanNby2(int[] num) {
+	void arrayElementGreaterThanNby2(int[] num) {
 		int f = 0, r = 0;
 
 		for (int i = 0; i < num.length; i++) {
@@ -472,6 +476,8 @@ public class App
 			else
 				f--;
 		}
+//		TC => N
+//		SC => 1
 		System.out.println("Majority Element (Candidate): " + r);
 	}
 
@@ -486,6 +492,8 @@ public class App
 		}
 
 		return ms;
+//		TC => N
+//		SC => 1
 	}
 
 	int arraySellBuy(int[] num) {
@@ -499,6 +507,8 @@ public class App
 		}
 
 		return md;
+//		TC => N
+//		SC => 1
 	}
 
 	int[] arrayPNAlternate(int[] num) {
@@ -517,6 +527,8 @@ public class App
 			}
 		}
 		return r;
+//		TC => N
+//		SC => N
 
 	}
 
@@ -552,6 +564,8 @@ public class App
 		}
 		Collections.reverse(lds);
 		return lds;
+//		TC => N
+//		SC => N
 	}
 
 	 private static void  quickSort(int[] num, int s, int e) {
@@ -616,6 +630,8 @@ public class App
 
 	        // Step 5: Reverse the right part (after pi)
 	        reverse(num, pi + 1, n - 1);
+//			TC => N
+//			SC => 1
 	}
 	
 	 private static void swap(int[] arr, int i, int j) {
